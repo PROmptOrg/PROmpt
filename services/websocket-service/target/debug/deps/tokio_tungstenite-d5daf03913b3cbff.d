@@ -1,0 +1,10 @@
+c:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\deps\libtokio_tungstenite-d5daf03913b3cbff.rmeta: C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\lib.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\compat.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\connect.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\handshake.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\stream.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\tls.rs
+
+c:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\deps\tokio_tungstenite-d5daf03913b3cbff.d: C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\lib.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\compat.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\connect.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\handshake.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\stream.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\tls.rs
+
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\lib.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\compat.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\connect.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\handshake.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\stream.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\tokio-tungstenite-0.21.0\src\tls.rs:

@@ -1,0 +1,11 @@
+C:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\deps\libgetrandom-327ced8532d69d9e.rmeta: C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\lib.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\util.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error_impls.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\windows.rs
+
+C:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\deps\libgetrandom-327ced8532d69d9e.rlib: C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\lib.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\util.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error_impls.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\windows.rs
+
+C:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\deps\getrandom-327ced8532d69d9e.d: C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\lib.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\util.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error_impls.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\windows.rs
+
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\lib.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\util.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\error_impls.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\getrandom-0.2.11\src\windows.rs:

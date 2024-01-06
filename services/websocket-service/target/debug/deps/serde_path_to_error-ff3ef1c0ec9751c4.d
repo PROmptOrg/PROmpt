@@ -1,0 +1,9 @@
+c:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\deps\libserde_path_to_error-ff3ef1c0ec9751c4.rmeta: C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\lib.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\de.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\path.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\ser.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\wrap.rs
+
+c:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\deps\serde_path_to_error-ff3ef1c0ec9751c4.d: C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\lib.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\de.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\path.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\ser.rs C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\wrap.rs
+
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\lib.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\de.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\path.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\ser.rs:
+C:\Users\VGA\.cargo\registry\src\index.crates.io-6f17d22bba15001f\serde_path_to_error-0.1.15\src\wrap.rs:

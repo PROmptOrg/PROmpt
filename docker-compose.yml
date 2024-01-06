@@ -135,7 +135,7 @@ services:
       - ./config/config.json:/centrifugo/config.json
     command: centrifugo -c config.json
     ports:
-      - 3000:8000
+      - 4000:8000
     ulimits:
       nofile:
         soft: 65535
@@ -185,6 +185,18 @@ services:
     links:
       - kafka
       - zookeeper
+      
+  ws-chat:
+    image: ws-chat
+    container_name: ws-chat
+    ports:
+      - 3000:3000
+    build:
+      context: /services
+      dockerfile: /websocket-service/Dockerfile
+    networks:
+      - kong-net
+    
 secrets:
   kong_postgres_password:
     file: ./config/POSTGRES_PASSWORD

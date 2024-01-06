@@ -1,2 +1,10 @@
 _format_version: "2.1"
-_transform: true
+
+services:
+- name: ws-chat
+  url: http://localhost:3000/
+routes:
+- name: api-requests
+  service: ws-chat
+  paths:
+    - /chat
