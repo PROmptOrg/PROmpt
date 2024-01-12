@@ -1,1 +1,0 @@
-C:\Users\VGA\source\repos\PROmpt\services\websocket-service\target\debug\websocket-service.exe: C:\Users\VGA\source\repos\PROmpt\services\websocket-service\chat.html C:\Users\VGA\source\repos\PROmpt\services\websocket-service\src\main.rs
