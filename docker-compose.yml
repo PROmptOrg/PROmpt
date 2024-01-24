@@ -140,6 +140,8 @@ services:
       nofile:
         soft: 65535
         hard: 65535
+    networks:
+      - kong-net
 # kafka cluster
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -185,17 +187,6 @@ services:
     links:
       - kafka
       - zookeeper
-      
-  ws-chat:
-    image: ws-chat
-    container_name: ws-chat
-    ports:
-      - 3000:3000
-    build:
-      context: /services
-      dockerfile: /websocket-service/Dockerfile
-    networks:
-      - kong-net
     
 secrets:
   kong_postgres_password:
