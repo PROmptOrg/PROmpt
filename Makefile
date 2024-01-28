@@ -6,3 +6,6 @@ kong-postgres-kafka:
 	docker-compose --profile database --profile kafka_cluster up -d
 clear:
 	docker-compose --profile database --profile kafka_cluster down --volumes
+restart:
+	make clear
+	make kong-postgres

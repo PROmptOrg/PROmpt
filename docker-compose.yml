@@ -18,9 +18,13 @@ volumes:
     driver_opts:
       type: tmpfs
       device: tmpfs
+  prompt-data:
+  redis-data:
 
 networks:
   kong-net:
+    driver: bridge
+  prompt-net:
     driver: bridge
 
 services:
@@ -187,7 +191,44 @@ services:
     links:
       - kafka
       - zookeeper
-    
+# Redis 
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - redis-data:/var/lib/redis/data
+      - ./config/redis.conf:/etc/redis/redis.conf
+# PROmpt main DB
+  main-db:
+    container_name: main-db
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD_FILE: ./run/secrets/maindb_postgres_password
+      POSTGRES_DATABASE: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - 5432:5432
+    networks:
+      - prompt-net
+    volumes:
+      - prompt-data:/var/lib/postgresql/data
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    secrets:
+      - maindb_postgres_password
+    healthcheck:
+      test: psql -U postgres -q -d postgres -c "SELECT 'ready';"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
 secrets:
   kong_postgres_password:
-    file: ./config/POSTGRES_PASSWORD
+    file: ./config/KONGDB_PASSWORD
+  maindb_postgres_password:
+    file: ./config/MAINDB_PASSWORD
