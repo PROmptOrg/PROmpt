@@ -180,12 +180,14 @@ services:
       KAFKA_JMX_HOSTNAME: kafka
 
   kafka-ui:
-    image: provectuslabs/kafka-ui
+    image: provectuslabs/kafka-ui:latest
     profiles: [ "kafka_cluster" ]
     container_name: kafka-ui
     ports:
       - 8082:8080
     restart: always
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
     links:
       - kafka
       - zookeeper
