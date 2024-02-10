@@ -16,3 +16,6 @@ jobs:
     
     - name: Run check
       run: make kong-postgres-kafka
+
+    - name: Check api gateway
+      run: curl -i -X POST 127.0.0.1:8001/services/ \ -d name=test \ -d url=http://example.com
