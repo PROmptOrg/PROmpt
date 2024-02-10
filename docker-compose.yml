@@ -188,6 +188,9 @@ services:
     restart: always
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
+      SPRING_CONFIG_ADDITIONAL-LOCATION: /config/kafka.yml
+    volumes:
+      - ./config/kafka.yml:/kafka/kafka.yml
     links:
       - kafka
       - zookeeper
