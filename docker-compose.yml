@@ -153,11 +153,14 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - prompt-net
     ports:
       - 2181:2181
 
   kafka:
     image: confluentinc/cp-kafka:latest
+    container_name: kafka
     profiles: [ "kafka_cluster" ]
     depends_on:
       - zookeeper
@@ -165,6 +168,8 @@ services:
       - 9092:9092
       - 9997:9997
     hostname: kafka
+    networks:
+      - prompt-net
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -183,6 +188,8 @@ services:
     image: provectuslabs/kafka-ui
     profiles: [ "kafka_cluster" ]
     container_name: kafka-ui
+    networks:
+      - prompt-net
     ports:
       - 8082:8080
     restart: always
@@ -226,7 +233,23 @@ services:
       timeout: 5s
       retries: 5
       start_period: 5s
-
+# MessageProducer
+  message-produser:
+    container_name: message-produser
+    image: vga815/messagesproducer:latest
+    ports: 
+      - 5000:8080
+    networks:
+      - prompt-net
+    depends_on:
+      - kafka
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    
 secrets:
   kong_postgres_password:
     file: ./config/KONGDB_PASSWORD
