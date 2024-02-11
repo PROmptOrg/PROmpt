@@ -185,7 +185,7 @@ services:
       KAFKA_JMX_HOSTNAME: kafka
 
   kafka-ui:
-    image: provectuslabs/kafka-ui
+    image: provectuslabs/kafka-ui:latest
     profiles: [ "kafka_cluster" ]
     container_name: kafka-ui
     networks:
@@ -194,7 +194,10 @@ services:
       - 8082:8080
     restart: always
     environment:
-      DYNAMIC_CONFIG_ENABLED: true
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      SPRING_CONFIG_ADDITIONAL-LOCATION: /config/kafka.yml
+    volumes:
+      - ./config/kafka.yml:/kafka/kafka.yml
     links:
       - kafka
       - zookeeper
