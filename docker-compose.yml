@@ -251,7 +251,17 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-    
+      
+  text-messages-transmitter:
+    container_name: vga815/text-messages-transmitter:latest
+    image: text-messages-transmitter
+    ports: 
+      - 5001:8080
+    networks:
+      - prompt-net
+    environment:
+      - BROKER=192.168.240.1:9092
+        
 secrets:
   kong_postgres_password:
     file: ./config/KONGDB_PASSWORD
