@@ -253,8 +253,8 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       
   text-messages-transmitter:
-    container_name: vga815/text-messages-transmitter:latest
-    image: text-messages-transmitter
+    container_name: text-messages-transmitter
+    image: vga815/text-messages-transmitter:latest
     ports: 
       - 5001:8080
     networks:
