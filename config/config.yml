@@ -6,7 +6,7 @@ kafka:
       schemaRegistry: http://localhost:8085
       schemaRegistryAuth:
         username: kafka
-        password: ${{kafka.KAFKA_PASSWORD}}
+        password: kafka
 #     schemaNameTemplate: "%s-value"
       metrics:
         port: 9997
