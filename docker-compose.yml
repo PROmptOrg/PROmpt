@@ -261,7 +261,19 @@ services:
       - prompt-net
     environment:
       - BROKER=192.168.240.1:9092
-        
+  
+  signup-service:
+    container_name: signup-service
+    image: vga815/signup-service:latest
+    ports:
+      - 3000:3000
+    networks:
+      - prompt-net
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@main-db:5432/postgres
+      - JWT_SECRET=tutu
+    depends_on:
+      - main-db
 secrets:
   kong_postgres_password:
     file: ./config/KONGDB_PASSWORD
