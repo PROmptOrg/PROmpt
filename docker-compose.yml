@@ -59,6 +59,7 @@ services:
 
   kong:
     image: "${KONG_DOCKER_TAG:-kong:latest}"
+    container_name: kong
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
@@ -75,6 +76,7 @@ services:
       - kong_postgres_password
     networks:
       - kong-net
+      - prompt-net
     ports:
       # The following two environment variables default to an insecure value (0.0.0.0)
       # according to the CIS Security test.
@@ -269,11 +271,13 @@ services:
       - 3000:3000
     networks:
       - prompt-net
+      - kong-net
     environment:
       - DATABASE_URL=postgres://postgres:postgres@main-db:5432/postgres
       - JWT_SECRET=tutu
     depends_on:
       - main-db
+      - kong
 secrets:
   kong_postgres_password:
     file: ./config/KONGDB_PASSWORD
