@@ -7,7 +7,7 @@ To install PROmpt locally, follow these steps:
 1. Run the PROmpt `make start`
 2. If you want to stop all services and delete all volumes: `make clear`
 ## Contributing
-Contributions are welcome! Here's how you can contribute to the Ballistic Trajectory Calculator:
+Contributions are welcome! Here's how you can contribute to the PROmpt:
 1. Fork the repository.
 2. Create a new branch: `git checkout -b my-feature-branch`
 3. Make your changes and commit them: `git commit -am 'Add some feature'`.
