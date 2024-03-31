@@ -175,7 +175,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://192.168.240.1:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://192.168.0.113:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
@@ -246,11 +246,10 @@ services:
       - 5000:8080
     networks:
       - prompt-net
-      - kong-net
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - BootstrapServers=192.168.240.1:9092
+      - BootstrapServers=192.168.0.113:9092
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -263,7 +262,7 @@ services:
     networks:
       - prompt-net
     environment:
-      - BROKER=192.168.240.1:9092
+      - BROKER=192.168.0.113:9092
   
   signup-service:
     container_name: signup-service
@@ -279,19 +278,32 @@ services:
     depends_on:
       - main-db
       - kong
-  chat-creator:
-    container_name: chat-creator
-    image: vga815/chat-creator:latest
+      
+  DataPipelineHub:
+    image:  aim41tt/data-pipeline-hub:dev
     ports:
-      - 3001:3000
+      - "3003:8080"
+    restart: always
     networks:
       - prompt-net
     environment:
-        - DATABASE_URL=postgres://postgres:postgres@main-db:5432/postgres
-    depends_on:
-      - main-db
+      - DATABASE_JDBC_URL=jdbc:postgresql://main-db:5432/postgres?user=postgres&password=postgres
+      - KAFKA_HOST=192.168.0.113:9092
+      
+  kafkaTester:
+    image:  aim41tt/kafkatester:latest
+    ports:
+      - "3004:3004"
+    networks:
+      - prompt-net
+    environment:
+      - KAFKA_HOST=192.168.0.113:9092
+      - NUMBER_MESSAGES=10000
+      
 secrets:
   kong_postgres_password:
     file: ./config/KONGDB_PASSWORD
   maindb_postgres_password:
     file: ./config/MAINDB_PASSWORD
+    
+  
