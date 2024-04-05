@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.8'
 
 x-kong-config:
   &kong-env
@@ -148,6 +148,7 @@ services:
         hard: 65535
     networks:
       - kong-net
+      - prompt-net
 # kafka cluster
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
@@ -175,7 +176,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://192.168.0.113:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://${KAFKA_BROKER_IP}:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
@@ -239,7 +240,7 @@ services:
       retries: 5
       start_period: 5s
 # MessageProducer
-  message-produser:
+  message-producer:
     container_name: message-producer
     image: vga815/messagesproducer:latest
     ports: 
@@ -249,7 +250,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - BootstrapServers=192.168.0.113:9092
+      - BootstrapServers=${KAFKA_BROKER_IP}:9092
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -262,7 +263,7 @@ services:
     networks:
       - prompt-net
     environment:
-      - BROKER=192.168.0.113:9092
+      - BROKER=${KAFKA_BROKER_IP}:9092
   
   signup-service:
     container_name: signup-service
@@ -278,8 +279,22 @@ services:
     depends_on:
       - main-db
       - kong
-      
+  
+  chat-creator:
+    container_name: chat-creator
+    image: vga815/chat-creator:latest
+    ports:
+      - "3001:3000"
+    restart: always
+    networks:
+      - prompt-net
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@main-db:5432/postgres
+    depends_on:
+      - main-db
+
   DataPipelineHub:
+    container_name: data-pipeline-hub
     image:  aim41tt/data-pipeline-hub:dev
     ports:
       - "3003:8080"
@@ -288,16 +303,19 @@ services:
       - prompt-net
     environment:
       - DATABASE_JDBC_URL=jdbc:postgresql://main-db:5432/postgres?user=postgres&password=postgres
-      - KAFKA_HOST=192.168.0.113:9092
+      - KAFKA_HOST=${KAFKA_BROKER_IP}:9092
       
   kafkaTester:
+    container_name: kafka-tester
     image:  aim41tt/kafkatester:latest
+    profiles:
+      - test
     ports:
       - "3004:3004"
     networks:
       - prompt-net
     environment:
-      - KAFKA_HOST=192.168.0.113:9092
+      - KAFKA_HOST=${KAFKA_BROKER_IP}:9092
       - NUMBER_MESSAGES=10000
       
 secrets:
