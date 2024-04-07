@@ -267,7 +267,7 @@ services:
   
   signup-service:
     container_name: signup-service
-    image: vga815/signup-service:latest
+    image: ghcr.io/promptorg/signup-service:latest
     ports:
       - 3000:3000
     networks:
@@ -282,7 +282,7 @@ services:
   
   chat-creator:
     container_name: chat-creator
-    image: vga815/chat-creator:latest
+    image: ghcr.io/promptorg/chat-creator:latest
     ports:
       - "3001:3000"
     restart: always
