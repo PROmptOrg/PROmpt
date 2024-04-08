@@ -9,14 +9,26 @@ clear:
 restart:
 	make clear
 	make kong-postgres-kafka
-add-centrifugo:
-	curl  -X POST \
+kong-configure:
+	make add-kong-service NAME=centrifugo URL=http://centrifugo:8000
+	make add-kong-service NAME=signup URL=http://signup-service:3000
+	make add-kong-service NAME=chat-creator URL=http://chat-creator:3000
+	make add-kong-jwt NAME=chat-creator
+	make add-kong-service NAME=message-producer URL=http://message-producer:8080
+	make add-kong-jwt NAME=message-producer
+add-kong-service:
+	curl -i -X POST \
   '127.0.0.1:8001/services/' \
   --header 'Accept: */*' \
-  --form 'name="centrifugo"' \
-  --form 'url="http://centrifugo:8000"'
+  --form 'name=${NAME}' \
+  --form 'url=${URL}'
 
-	curl  -X POST \
-  '127.0.0.1:8001/services/centrifugo/routes' \
+	curl -i -X POST \
+  '127.0.0.1:8001/services/${NAME}/routes' \
   --header 'Accept: */*' \
-  --form 'paths[]="/centrifugo"'
+  --form 'paths[]=/${NAME}'
+add-kong-jwt:
+	curl -i -X POST \
+  '127.0.0.1:8001/services/${NAME}/plugins' \
+  --header 'Accept: */*' \
+  --form 'name="jwt"'
