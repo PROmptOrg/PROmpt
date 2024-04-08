@@ -254,16 +254,6 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-      
-  text-messages-transmitter:
-    container_name: text-messages-transmitter
-    image: vga815/text-messages-transmitter:latest
-    ports: 
-      - 5001:8080
-    networks:
-      - prompt-net
-    environment:
-      - BROKER=${KAFKA_BROKER_IP}:9092
   
   signup-service:
     container_name: signup-service
