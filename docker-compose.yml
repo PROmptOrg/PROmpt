@@ -139,9 +139,11 @@ services:
     image: centrifugo/centrifugo:v5
     volumes:
       - ./config/config.json:/centrifugo/config.json
-    command: centrifugo -c config.json
+    command: centrifugo --config=config.json --api_insecure --swagger
     ports:
-      - 4000:8000
+      - 8427:8427
+    depends_on:
+      - redis
     ulimits:
       nofile:
         soft: 65535
@@ -209,6 +211,8 @@ services:
     image: redis:latest
     container_name: redis
     restart: always
+    networks:
+      - prompt-net
     ports:
       - "6379:6379"
     command: redis-server /etc/redis/redis.conf
@@ -257,7 +261,7 @@ services:
   
   signup-service:
     container_name: signup-service
-    image: ghcr.io/promptorg/signup-service:latest
+    image: vga815/signup-service:latest
     ports:
       - 3000:3000
     networks:
