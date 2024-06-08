@@ -20,6 +20,9 @@ volumes:
       device: tmpfs
   prompt-data:
   redis-data:
+  news-data:  
+  prompt-data-test:
+  storagemanager:
 
 networks:
   kong-net:
@@ -30,7 +33,7 @@ networks:
 services:
 # kong 
   kong-migrations:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: "${KONG_DOCKER_TAG}"
     command: kong migrations bootstrap
     profiles: [ "database" ]
     depends_on:
@@ -44,7 +47,7 @@ services:
     restart: on-failure
 
   kong-migrations-up:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: "${KONG_DOCKER_TAG}"
     command: kong migrations up && kong migrations finish
     profiles: [ "database" ]
     depends_on:
@@ -58,7 +61,7 @@ services:
     restart: on-failure
 
   kong:
-    image: kong:latest
+    image: "${KONG_DOCKER_TAG}"
     container_name: kong
     user: "${KONG_USER}"
     environment:
@@ -138,7 +141,7 @@ services:
     container_name: centrifugo
     image: centrifugo/centrifugo:v5
     volumes:
-      - ./config/config.json:/centrifugo/config.json
+      - ./config/centrifugo/config.json:/centrifugo/config.json
     command: centrifugo --config=config.json --api_insecure --swagger
     ports:
       - 8427:8427
@@ -202,7 +205,7 @@ services:
       DYNAMIC_CONFIG_ENABLED: 'true'
       SPRING_CONFIG_ADDITIONAL-LOCATION: /kafka/config.yml
     volumes:
-      - ./config/config.yml:/kafka/config.yml
+      - ./config/kafka/config.yml:/kafka/config.yml
     links:
       - kafka
       - zookeeper
@@ -218,7 +221,7 @@ services:
     command: redis-server /etc/redis/redis.conf
     volumes:
       - redis-data:/var/lib/redis/data
-      - ./config/redis.conf:/etc/redis/redis.conf
+      - ./config/redis/redis.conf:/etc/redis/redis.conf
 # PROmpt main DB
   main-db:
     container_name: main-db
@@ -311,11 +314,41 @@ services:
     environment:
       - KAFKA_HOST=${KAFKA_BROKER_IP}:9092
       - NUMBER_MESSAGES=10000
-      
+
+  pm1:
+    image: mariadb/columnstore:latest
+    shm_size: '512mb'
+    hostname: mcs1
+    container_name: mcs1
+    volumes:
+      - prompt-data-test:/var/lib/columnstore/prompt-data-test
+      - storagemanager:/var/lib/columnstore/storagemanager
+      - ./config/mariadb/mariadb.sql:/tmp/mariadb.sql
+      - ./config/mariadb/bootstrap_cs.sh:/usr/bin/bootstrap
+    env_file:
+      - .env
+    ports:
+      - 3307:3306
+
+  xpd1:
+    image: mariadb/xpand-single:latest
+    deploy:
+    ulimits:
+      memlock: -1
+    hostname: xpd1
+    container_name: xpd1
+    volumes:
+      - ./config/mariadb/xpd_setup.sh:/usr/bin/xpd_setup
+    env_file:
+      - .env
+    links:
+      - "pm1"
+    ports:
+      - 3306:3306
 secrets:
   kong_postgres_password:
-    file: ./config/KONGDB_PASSWORD
+    file: ./config/secrets/KONGDB_PASSWORD
   maindb_postgres_password:
-    file: ./config/MAINDB_PASSWORD
+    file: ./config/secrets/MAINDB_PASSWORD
     
   
