@@ -13,3 +13,5 @@ Contributions are welcome! Here's how you can contribute to the PROmpt:
 3. Make your changes and commit them: `git commit -am 'Add some feature'`.
 4. Push the changes to your branch: `git push origin my-feature-branch`.
 5. Open a pull request and describe the changes you have made.
+## GitHub Stats
+![Alt](https://repobeats.axiom.co/api/embed/340a412ed6fd5836e72a2e66ead97f034cde65cf.svg "Repobeats analytics image")
