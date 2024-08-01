@@ -361,6 +361,7 @@ services:
     restart: unless-stopped
     networks:
       - prompt-net
+      - kong-net
 secrets:
   kong_postgres_password:
     file: ./config/secrets/KONGDB_PASSWORD
