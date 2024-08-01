@@ -348,13 +348,13 @@ services:
   
   agent:
     container_name: newrelic-infra
-    build:
-      context: ./newrelic-infra/
-      dockerfile: newrelic-infra.dockerfile
+    image: vga815/prompt-agent:dev
     cap_add:
       - SYS_PTRACE
     pid: host
     privileged: true
+    environment:
+      - NRIA_LICENSE_KEY=eu01xx8328c62a572c96c964dbd4e790FFFFNRAL
     volumes:
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
