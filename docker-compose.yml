@@ -354,7 +354,7 @@ services:
     pid: host
     privileged: true
     environment:
-      - NRIA_LICENSE_KEY=eu01xxc4a32e814b0990cd5f177fd25bFFFFNRAL
+      - NEW_RELIC_CONFIG_FILE=/etc/newrelic-infra.yml
     volumes:
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
