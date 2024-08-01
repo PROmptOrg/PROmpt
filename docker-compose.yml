@@ -354,7 +354,7 @@ services:
     pid: host
     privileged: true
     environment:
-      - NRIA_LICENSE_KEY=eu01xx8328c62a572c96c964dbd4e790FFFFNRAL
+      - NRIA_LICENSE_KEY=eu01xxc4a32e814b0990cd5f177fd25bFFFFNRAL
     volumes:
       - "/:/host:ro"
       - "/var/run/docker.sock:/var/run/docker.sock"
